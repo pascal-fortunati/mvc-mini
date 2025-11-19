@@ -8,18 +8,19 @@
  * Chaque entrée du tableau contient au minimum : id, title, body.
  */
 ?>
-<h1>Articles</h1>
-
-<ul>
-  <?php if (!empty($articles)): ?>
-    <?php foreach ($articles as $a): ?>
-      <li>
-        <a href="/articles/<?= htmlspecialchars($a['id'], ENT_QUOTES, 'UTF-8') ?>">
-          <?= htmlspecialchars($a['title'], ENT_QUOTES, 'UTF-8') ?>
-        </a>
-      </li>
-    <?php endforeach; ?>
-  <?php else: ?>
-    <li>Aucun article disponible.</li>
-  <?php endif; ?>
-</ul>
+<div class="card">
+  <h1>Articles</h1>
+  <ul>
+    <?php if (!empty($articles)): ?>
+      <?php foreach ($articles as $a): ?>
+        <li>
+          <a href="/articles/<?= htmlspecialchars($a['id'], ENT_QUOTES, 'UTF-8') ?>">
+            <?= htmlspecialchars($a['title'], ENT_QUOTES, 'UTF-8') ?>
+          </a>
+        </li>
+      <?php endforeach; ?>
+    <?php else: ?>
+      <li>Aucun article disponible.</li>
+    <?php endif; ?>
+  </ul>
+</div>

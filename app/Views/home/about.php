@@ -7,8 +7,10 @@
  * transmise par le HomeController.
  */
 ?>
-<h1>
-    <?= htmlspecialchars($title ?? 'À propos', ENT_QUOTES, 'UTF-8') ?>
-</h1>
+<div class="card">
+    <h1>
+        <?= htmlspecialchars($title ?? 'À propos', ENT_QUOTES, 'UTF-8') ?>
+    </h1>
 
-<p>Ceci est la page "À propos" de notre mini-MVC.</p>
+    <p>Ceci est la page "À propos" de notre mini-MVC.</p>
+</div>
