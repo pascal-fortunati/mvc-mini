@@ -22,11 +22,14 @@
 </head>
 
 <body>
+  <?php
+  $currentPath = getCurrentPath();
+  ?>
   <!-- Menu de navigation global -->
   <nav>
-    <a href="/">Accueil</a>
-    <a href="/articles">Articles</a>
-    <a href="/about">À propos</a>
+    <a href="/" <?= $currentPath === '/' ? ' class="active"' : '' ?>>Accueil</a>
+    <a href="/articles" <?= $currentPath === '/articles' ? ' class="active"' : '' ?>>Articles</a>
+    <a href="/about" <?= $currentPath === '/about' ? ' class="active"' : '' ?>>À propos</a>
   </nav>
 
   <!-- Contenu principal injecté depuis BaseController -->
