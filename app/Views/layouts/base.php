@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Layout principal
  * -----------------
@@ -8,6 +9,7 @@
 ?>
 <!doctype html>
 <html lang="fr">
+
 <head>
   <meta charset="utf-8">
 
@@ -19,17 +21,35 @@
 
   <!-- (Optionnel) Ajout d’un peu de style basique -->
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-    nav { background: #f4f4f4; padding: 10px; }
-    nav a { margin-right: 10px; text-decoration: none; color: #333; }
-    main { padding: 20px; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      background: #f4f4f4;
+      padding: 10px;
+    }
+
+    nav a {
+      margin-right: 10px;
+      text-decoration: none;
+      color: #333;
+    }
+
+    main {
+      padding: 20px;
+    }
   </style>
 </head>
+
 <body>
   <!-- Menu de navigation global -->
   <nav>
-    <a href="/">Accueil</a> | 
-    <a href="/articles">Articles</a>
+    <a href="/">Accueil</a> |
+    <a href="/articles">Articles</a> |
+    <a href="/about">À propos</a>
   </nav>
 
   <!-- Contenu principal injecté depuis BaseController -->
@@ -37,4 +57,5 @@
     <?= $content ?>
   </main>
 </body>
+
 </html>

@@ -1,4 +1,5 @@
 <?php
+
 namespace Core;
 
 /**
@@ -38,25 +39,33 @@ class Router
      */
     public function dispatch(string $uri, string $method): void
     {
-        // On extrait uniquement le chemin (sans paramètres GET ou #ancre)
         $path = parse_url($uri, PHP_URL_PATH) ?? '/';
 
-        // Vérifie si une route correspond à ce chemin pour la méthode demandée
+        // Recherche route exacte
         foreach ($this->routes[$method] ?? [] as $route => $action) {
             if ($route === $path) {
-                // Sépare le nom complet du contrôleur et la méthode (notation "Controller@method")
-                [$class, $method] = explode('@', $action);
-
-                // Instancie dynamiquement le contrôleur
+                [$class, $methodName] = explode('@', $action);
                 $controller = new $class();
-
-                // Appelle la méthode du contrôleur
-                $controller->$method();
+                $controller->$methodName();
                 return;
             }
         }
 
-        // Si aucune route trouvée, on renvoie une erreur 404
+        // Recherche route dynamique (ex: /articles/{id})
+        foreach ($this->routes[$method] ?? [] as $route => $action) {
+            // Remplace {param} par regex
+            if (preg_match('#\{[a-zA-Z0-9_]+\}#', $route)) {
+                $regex = preg_replace('#\{[a-zA-Z0-9_]+\}#', '([a-zA-Z0-9_-]+)', $route);
+                if (preg_match('#^' . $regex . '$#', $path, $matches)) {
+                    array_shift($matches); // Retire le match complet
+                    [$class, $methodName] = explode('@', $action);
+                    $controller = new $class();
+                    $controller->$methodName(...$matches);
+                    return;
+                }
+            }
+        }
+
         http_response_code(404);
         echo "404 - Page non trouvée";
     }

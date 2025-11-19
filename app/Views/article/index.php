@@ -1,4 +1,5 @@
 <?php
+
 /** 
  * Vue : Liste des articles
  * -------------------------
@@ -13,8 +14,9 @@
   <?php if (!empty($articles)): ?>
     <?php foreach ($articles as $a): ?>
       <li>
-        <!-- On sécurise l'affichage pour éviter les failles XSS -->
-        <?= htmlspecialchars($a['title'], ENT_QUOTES, 'UTF-8') ?>
+        <a href="/articles/<?= htmlspecialchars($a['id'], ENT_QUOTES, 'UTF-8') ?>">
+          <?= htmlspecialchars($a['title'], ENT_QUOTES, 'UTF-8') ?>
+        </a>
       </li>
     <?php endforeach; ?>
   <?php else: ?>
